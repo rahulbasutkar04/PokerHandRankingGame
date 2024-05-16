@@ -1,17 +1,30 @@
 package com.amaap.pokerhandranking.controller;
 
+import com.amaap.pokerhandranking.controller.dto.Http;
+import com.amaap.pokerhandranking.controller.dto.Response;
+import com.amaap.pokerhandranking.service.HandService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class HandControllerTest {
+
+    HandService handService;
+
+    @BeforeEach
+    void setup(){
+        handService=new HandService();
+    }
 
     @Test
     void shouldBeAbleToReceiveCards()
     {
         // arrange
-        CardController cardController=new CardController();
+        HandController handController =new HandController(handService);
         List<String> receivedCards=new ArrayList<>();
         receivedCards.add("HA");
         receivedCards.add("S2");
@@ -19,9 +32,9 @@ public class HandControllerTest {
         receivedCards.add("C7");
         receivedCards.add("ST");
 
-        Response expected=new Response(Http.OK,"cards Submitted..");
+        Response expected=new Response(Http.OK,"Cards Submitted");
         // act
-        Response actual= cardController.reviceCards(receivedCards);
+        Response actual= handController.receiveCards(receivedCards);
 
         // assert
 
