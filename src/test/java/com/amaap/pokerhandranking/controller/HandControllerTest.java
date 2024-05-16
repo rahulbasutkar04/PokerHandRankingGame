@@ -2,7 +2,10 @@ package com.amaap.pokerhandranking.controller;
 
 import com.amaap.pokerhandranking.controller.dto.Http;
 import com.amaap.pokerhandranking.controller.dto.Response;
+import com.amaap.pokerhandranking.domain.service.CardParser;
 import com.amaap.pokerhandranking.service.HandService;
+import com.amaap.pokerhandranking.service.exception.DuplicateCardException;
+import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HandControllerTest {
 
     HandService handService;
+    CardParser cardParser;
 
     @BeforeEach
     void setup(){
-        handService=new HandService();
+        cardParser=new CardParser();
+        handService=new HandService(cardParser);
     }
 
     @Test
-    void shouldBeAbleToReceiveCards()
-    {
+    void shouldBeAbleToReceiveCards() throws Exception, DuplicateCardException {
         // arrange
         HandController handController =new HandController(handService);
         List<String> receivedCards=new ArrayList<>();
