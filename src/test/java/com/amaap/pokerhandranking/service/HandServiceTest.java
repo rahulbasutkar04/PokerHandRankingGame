@@ -1,5 +1,6 @@
 package com.amaap.pokerhandranking.service;
 
+import com.amaap.pokerhandranking.builder.CardBuilder;
 import com.amaap.pokerhandranking.domain.service.CardParser;
 import com.amaap.pokerhandranking.repository.impl.InMemoryHandRepository;
 import com.amaap.pokerhandranking.service.exception.DuplicateCardException;
@@ -16,12 +17,14 @@ class HandServiceTest {
     CardParser cardParser;
     HandService handService;
     InMemoryHandRepository inMemoryHandRepository;
+    CardBuilder cardBuilder;
 
     @BeforeEach
-    void setp() {
+    void setup() {
         cardParser = new CardParser();
-        inMemoryHandRepository=InMemoryHandRepository.getInstance();
-        handService=new HandService(cardParser,inMemoryHandRepository);
+        inMemoryHandRepository = InMemoryHandRepository.getInstance();
+        handService = new HandService(cardParser, inMemoryHandRepository);
+        cardBuilder = new CardBuilder();
         inMemoryHandRepository.clear();
     }
 
@@ -29,45 +32,27 @@ class HandServiceTest {
     @Test
     void shouldBeAbleToReturnTrueIfFiveCardsAreAdded() throws Exception, DuplicateCardException {
         // arrange
-        List<String> receivedCards = new ArrayList<>();
-        receivedCards.add("HA");
-        receivedCards.add("S2");
-        receivedCards.add("D5");
-        receivedCards.add("C7");
-        receivedCards.add("ST");
+        List<String> receivedCards = cardBuilder.getValidCards();
 
         // act & assert
         assertTrue(handService.receiveCards(receivedCards));
-
     }
 
     @Test
     void shouldThrowExceptionIfMoreThanFiveCardsAreGiven() {
         // arrange
-        List<String> receivedCards = new ArrayList<>();
-        receivedCards.add("HA");
-        receivedCards.add("S2");
-        receivedCards.add("D5");
-        receivedCards.add("C7");
-        receivedCards.add("ST");
-        receivedCards.add("C3");
+        List<String> receivedCards = cardBuilder.getExtraCountCards();
 
         // act & assert
         assertThrows(InvalidCardCountException.class, () -> {
             handService.receiveCards(receivedCards);
         });
-
     }
 
     @Test
     void shouldThrowExceptionIfDuplicateCardFound() {
         // arrange
-        List<String> receivedCards = new ArrayList<>();
-        receivedCards.add("HA");
-        receivedCards.add("S2");
-        receivedCards.add("D5");
-        receivedCards.add("C7");
-        receivedCards.add("HA");
+        List<String> receivedCards = cardBuilder.getDuplicateCards();
 
         // act & assert
         assertThrows(DuplicateCardException.class, () -> {
@@ -89,12 +74,7 @@ class HandServiceTest {
     @Test
     void shouldReturnFalseIfGivenCardListHasInvalidTypeOfCard() throws DuplicateCardException, Exception {
         // arrange
-        List<String> receivedCards = new ArrayList<>();
-        receivedCards.add("HA");
-        receivedCards.add("S2");
-        receivedCards.add("5D");
-        receivedCards.add("C7");
-        receivedCards.add("ST");
+        List<String> receivedCards = cardBuilder.getInValidCards();
 
         // act
         boolean actual = handService.receiveCards(receivedCards);
@@ -102,25 +82,19 @@ class HandServiceTest {
         // assert
         assertFalse(actual);
 
-
     }
 
     @Test
     void shouldBeAbelToGetTheStoredCardFromDatabase() throws DuplicateCardException, Exception {
         // arrange
-        List<String> receivedCards = new ArrayList<>();
-        receivedCards.add("HA");
-        receivedCards.add("S2");
-        receivedCards.add("D5");
-        receivedCards.add("C7");
-        receivedCards.add("ST");
+        List<String> receivedCards = cardBuilder.getValidCards();
 
         // act
         handService.receiveCards(receivedCards);
-       int storedCardSize= inMemoryHandRepository.getCards().size();
+        int storedCardSize = inMemoryHandRepository.getCards().size();
 
-       // assert
-       assertEquals(receivedCards.size(),storedCardSize);
+        // assert
+        assertEquals(receivedCards.size(), storedCardSize);
 
     }
 
