@@ -1,6 +1,7 @@
 package com.amaap.pokerhandranking.service;
 
 import com.amaap.pokerhandranking.domain.service.CardParser;
+import com.amaap.pokerhandranking.repository.impl.InMemoryHandRepository;
 import com.amaap.pokerhandranking.service.exception.DuplicateCardException;
 import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
 
@@ -10,10 +11,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class HandService {
-    private  final CardParser cardParser;
+    private final CardParser cardParser;
+    private InMemoryHandRepository inMemoryHandRepository;
 
-    public HandService(CardParser cardParser) {
+    public HandService(CardParser cardParser,InMemoryHandRepository inMemoryHandRepository) {
         this.cardParser = cardParser;
+        this.inMemoryHandRepository=InMemoryHandRepository.getInstance();
     }
 
     public boolean receiveCards(List<String> cards) throws Exception, DuplicateCardException {
@@ -24,11 +27,17 @@ public class HandService {
             throw new DuplicateCardException("Duplicate cards found: " + duplicates);
         }
 
-         if(cardParser.validateCards(cards)){
-            return  true;
+        try {
+            if (!cardParser.validateCards(cards)) {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
         }
 
-         return  false;
+        inMemoryHandRepository.insertIntoHandTable(cards);
+
+        return true;
     }
 
     private static List<String> findDuplicates(List<String> list) {
@@ -37,4 +46,5 @@ public class HandService {
                 .filter(n -> !elements.add(n))
                 .collect(Collectors.toList());
     }
+
 }
