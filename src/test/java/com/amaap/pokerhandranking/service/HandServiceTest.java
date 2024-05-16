@@ -1,7 +1,9 @@
 package com.amaap.pokerhandranking.service;
 
+import com.amaap.pokerhandranking.domain.service.CardParser;
 import com.amaap.pokerhandranking.service.exception.DuplicateCardException;
 import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,11 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HandServiceTest {
+    CardParser cardParser;
+
+    @BeforeEach
+    void setp()
+    {
+        cardParser=new CardParser();
+    }
+
 
     @Test
-    void shouldBeAbleToReturnTrueIfFiveCardsAreAdded() throws InvalidCardCountException, DuplicateCardException {
+    void shouldBeAbleToReturnTrueIfFiveCardsAreAdded() throws Exception, DuplicateCardException {
         // arrange
-        HandService handService = new HandService();
+        HandService handService = new HandService(cardParser);
         List<String> receivedCards = new ArrayList<>();
         receivedCards.add("HA");
         receivedCards.add("S2");
@@ -31,7 +41,7 @@ class HandServiceTest {
     @Test
     void shouldThrowExceptionIfMoreThanFiveCardsAreGiven() {
         // arrange
-        HandService handService = new HandService();
+        HandService handService = new HandService(cardParser);
         List<String> receivedCards = new ArrayList<>();
         receivedCards.add("HA");
         receivedCards.add("S2");
@@ -50,7 +60,7 @@ class HandServiceTest {
     @Test
     void shouldThrowExceptionIfDuplicateCardFound() {
         // arrange
-        HandService handService = new HandService();
+        HandService handService = new HandService(cardParser);
         List<String> receivedCards = new ArrayList<>();
         receivedCards.add("HA");
         receivedCards.add("S2");
@@ -65,7 +75,7 @@ class HandServiceTest {
     }    @Test
     void shouldThrowExceptionIfNoCardIsPassed() {
         // arrange
-        HandService handService = new HandService();
+        HandService handService = new HandService(cardParser);
         List<String> receivedCards = new ArrayList<>();
 
         // act & assert
