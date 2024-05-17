@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group 'com.amaap'
@@ -14,7 +15,16 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.mockito:mockito-core:3.12.4'
 }
-
+jacoco {
+    toolVersion = "0.8.8"
+}
 test {
     useJUnitPlatform()
+    jacoco {
+        enabled true
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
 }
