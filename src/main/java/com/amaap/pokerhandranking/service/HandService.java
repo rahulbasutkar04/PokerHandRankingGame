@@ -14,9 +14,9 @@ public class HandService {
     private final CardParser cardParser;
     private InMemoryHandRepository inMemoryHandRepository;
 
-    public HandService(CardParser cardParser,InMemoryHandRepository inMemoryHandRepository) {
+    public HandService(CardParser cardParser, InMemoryHandRepository inMemoryHandRepository) {
         this.cardParser = cardParser;
-        this.inMemoryHandRepository=InMemoryHandRepository.getInstance();
+        this.inMemoryHandRepository = InMemoryHandRepository.getInstance();
     }
 
     public boolean receiveCards(List<String> cards) throws Exception, DuplicateCardException {
