@@ -31,12 +31,25 @@ public class HandControllerTest {
     }
 
     @Test
-    void shouldBeAbleToReceiveCards() throws Exception, DuplicateCardException {
+    void shouldBeAbleToRespondWithOkIfCardsAreSubmitted() throws Exception, DuplicateCardException {
         // arrange
         HandController handController = new HandController(handService);
         List<String> receivedCards = cardBuilder.getValidCards();
 
         Response expected = new Response(Http.OK, "Cards Submitted");
+        // act
+        Response actual = handController.receiveCards(receivedCards);
+
+        // assert
+        assertEquals(actual, expected);
+    }
+    @Test
+    void shouldBeAbleToRespondWithBADREQUESTIfCardsAreNOTSubmitted(){
+        // arrange
+        HandController handController = new HandController(handService);
+        List<String> receivedCards = cardBuilder.getDuplicateCards();
+
+        Response expected = new Response(Http.BAD_REQUEST, "Duplicate cards found: [HA]");
         // act
         Response actual = handController.receiveCards(receivedCards);
 

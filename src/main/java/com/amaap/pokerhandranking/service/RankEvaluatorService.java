@@ -22,9 +22,10 @@ public class RankEvaluatorService {
         if (hand.size() == 0) throw new CardsNotFoundException("No Cards Found");
         else {
             HandRank = handEvaluator.evaluate(hand);
+
+            System.out.println(HandRank);
         }
     }
-
 
     public String getHandRank() {
         return HandRank;

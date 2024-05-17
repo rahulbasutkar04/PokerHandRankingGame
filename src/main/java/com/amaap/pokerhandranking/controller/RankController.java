@@ -9,8 +9,10 @@ import com.amaap.pokerhandranking.service.exception.CardsNotFoundException;
 
 public class RankController {
     RankEvaluatorService rankEvaluatorService=new RankEvaluatorService(InMemoryHandRepository.getInstance(),new HandEvaluator());
-    public Response getHandRank() throws CardsNotFoundException {
-           rankEvaluatorService.getRank();
-           return new Response(Http.OK,"Request Submitted");
+
+        public Response getHandRank() throws CardsNotFoundException {
+            rankEvaluatorService.getRank();
+            return new Response(Http.OK, "Request Submitted");
+        }
     }
-}
+

@@ -16,11 +16,8 @@ class InMemoryHandRepositoryTest {
     @BeforeEach
     void setUp() {
         repository = InMemoryHandRepository.getInstance();
-    }
-
-    @AfterEach
-    void tearDown() {
         repository.clear();
+
     }
 
     @Test

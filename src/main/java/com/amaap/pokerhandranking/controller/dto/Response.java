@@ -13,12 +13,16 @@ public class Response {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Response response)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Response response = (Response) o;
         return http == response.http && Objects.equals(message, response.message);
     }
+
 
     @Override
     public int hashCode() {
         return Objects.hash(http, message);
     }
+
 }
+

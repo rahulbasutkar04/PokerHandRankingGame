@@ -15,13 +15,16 @@ public class HandController {
         this.handService = handService;
     }
 
-    public Response receiveCards(List<String> Cards) throws Exception, DuplicateCardException {
-
-        if (handService.receiveCards(Cards)) {
-            return new Response(Http.OK, "Cards Submitted");
+    public Response receiveCards(List<String> Cards)  {
+        try {
+            if (handService.receiveCards(Cards)) {
+                return new Response(Http.OK, "Cards Submitted");
+            } else {
+                return new Response(Http.BAD_REQUEST, "Cards Not Submitted");
+            }
+        } catch (DuplicateCardException | Exception ex) {
+            return new Response(Http.BAD_REQUEST, ex.getMessage());
         }
-
-        return new Response(Http.BAD_REQUEST, "Cards Not Submitted");
     }
 
 }
