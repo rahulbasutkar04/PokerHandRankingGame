@@ -9,6 +9,14 @@ public class Card {
         this.rank = rank;
     }
 
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
     @Override
     public String toString() {
         return suit.getName() + rank.getName();
