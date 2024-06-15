@@ -1,6 +1,6 @@
 package com.amaap.pokerhandranking.domain.service;
 
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 
 import java.util.List;
 

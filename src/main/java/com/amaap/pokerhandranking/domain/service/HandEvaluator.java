@@ -1,6 +1,7 @@
 package com.amaap.pokerhandranking.domain.service;
 
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
+import com.amaap.pokerhandranking.domain.service.exception.InvalidCardNameException;
 import com.amaap.pokerhandranking.domain.service.impl.*;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class HandEvaluator {
 
     private final CardConvertor cardConvertor = new CardConvertor();
 
-    public String evaluate(List<String> hand) {
+    public String evaluate(List<String> hand) throws InvalidCardNameException {
         List<Card> cards = cardConvertor.convertToCardList(hand);
 
         List<HandRanking> evaluators = new ArrayList<>();

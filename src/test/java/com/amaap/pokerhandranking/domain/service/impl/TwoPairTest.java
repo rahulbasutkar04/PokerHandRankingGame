@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,23 +13,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TwoPairTest {
 
     private TwoPair twoPair;
-    private CardObjectBuilder cardObjectBuilder;
+    private CardRankBuilder cardRankBuilder;
 
     @BeforeEach
     void setUp() {
         twoPair = new TwoPair();
-        cardObjectBuilder = new CardObjectBuilder();
+        cardRankBuilder = new CardRankBuilder();
     }
 
     @Test
     void shouldBeAbleToIdentifyValidTwoPair() {
-        List<Card> validTwoPair = cardObjectBuilder.getValidTwoPairCards();
+        List<Card> validTwoPair = cardRankBuilder.getValidTwoPairCards();
         assertTrue(twoPair.evaluate(validTwoPair));
     }
 
     @Test
     void shouldBeAbleToIdentifyInvalidTwoPair() {
-        List<Card> invalidTwoPair = cardObjectBuilder.getInvalidTwoPairCards();
+        List<Card> invalidTwoPair = cardRankBuilder.getInvalidTwoPairCards();
         assertFalse(twoPair.evaluate(invalidTwoPair));
     }
 }

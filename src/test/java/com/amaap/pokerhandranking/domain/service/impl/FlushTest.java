@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FlushTest {
-    CardObjectBuilder cardObjectBuilder = new CardObjectBuilder();
+    CardRankBuilder cardRankBuilder = new CardRankBuilder();
 
     @Test
     void shouldBeAbleToReturnTrueForFlush() {
         // arrange
         Flush flush = new Flush();
-        List<Card> hand = cardObjectBuilder.getValidFlushCards();
+        List<Card> hand = cardRankBuilder.getValidFlushCards();
 
         // act
         boolean result = flush.evaluate(hand);
@@ -29,7 +29,7 @@ class FlushTest {
     void shouldBeAbleToReturnFalseForNonFlush() {
         // arrange
         Flush flush = new Flush();
-        List<Card> hand = cardObjectBuilder.getInValidFlushCards();
+        List<Card> hand = cardRankBuilder.getInValidFlushCards();
 
         // act
         boolean result = flush.evaluate(hand);

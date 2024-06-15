@@ -40,7 +40,7 @@ class RankEvaluatorServiceTest {
         cards.add("SQ");
         cards.add("SK");
         cards.add("SA");
-        handController.receiveCards(cards);
+        handController.getCards(cards);
 
         // act
         rankEvaluatorService.getRank();

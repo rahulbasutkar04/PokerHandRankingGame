@@ -9,11 +9,9 @@ public class InMemoryFakeDatabase implements FakeDatabase {
     private static InMemoryFakeDatabase instance;
     private List<String> cards = new ArrayList<>();
 
-    // Private constructor to prevent instantiation from outside
     private InMemoryFakeDatabase() {
     }
 
-    // Static method to get the singleton instance
     public static synchronized InMemoryFakeDatabase getInstance() {
         if (instance == null) {
             instance = new InMemoryFakeDatabase();

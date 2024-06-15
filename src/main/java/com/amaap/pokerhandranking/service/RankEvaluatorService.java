@@ -1,6 +1,7 @@
 package com.amaap.pokerhandranking.service;
 
 import com.amaap.pokerhandranking.domain.service.HandEvaluator;
+import com.amaap.pokerhandranking.domain.service.exception.InvalidCardNameException;
 import com.amaap.pokerhandranking.repository.impl.InMemoryHandRepository;
 import com.amaap.pokerhandranking.service.exception.CardsNotFoundException;
 
@@ -17,13 +18,11 @@ public class RankEvaluatorService {
         this.handEvaluator = handEvaluator;
     }
 
-    public void getRank() throws CardsNotFoundException {
+    public void getRank() throws CardsNotFoundException, InvalidCardNameException {
         List<String> hand = inMemoryHandRepository.getCards();
         if (hand.size() == 0) throw new CardsNotFoundException("No Cards Found");
         else {
             HandRank = handEvaluator.evaluate(hand);
-
-            System.out.println(HandRank);
         }
     }
 

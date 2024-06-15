@@ -1,4 +1,7 @@
-package com.amaap.pokerhandranking.domain.model;
+package com.amaap.pokerhandranking.domain.model.entity;
+
+import com.amaap.pokerhandranking.domain.model.valueobject.Rank;
+import com.amaap.pokerhandranking.domain.model.valueobject.Suit;
 
 public class Card {
     private final Suit suit;

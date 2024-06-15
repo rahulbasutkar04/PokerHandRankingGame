@@ -1,8 +1,8 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
-import com.amaap.pokerhandranking.domain.model.Rank;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
+import com.amaap.pokerhandranking.domain.model.valueobject.Rank;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,8 +15,8 @@ class RankCountTest {
     @Test
     void shouldBeAbleToCountRanksWithValidCards() {
         // arrange
-        CardObjectBuilder cardObjectBuilder = new CardObjectBuilder();
-        List<Card> cards = cardObjectBuilder.getValidPairCards();
+        CardRankBuilder cardRankBuilder = new CardRankBuilder();
+        List<Card> cards = cardRankBuilder.getValidPairCards();
         RankCount rankCount = new RankCount();
         Map<Rank, Integer> rankCountMap = rankCount.rankCount(cards);
 

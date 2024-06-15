@@ -1,8 +1,8 @@
 package com.amaap.pokerhandranking.domain.service;
 
-import com.amaap.pokerhandranking.domain.model.Card;
-import com.amaap.pokerhandranking.domain.model.Rank;
-import com.amaap.pokerhandranking.domain.model.Suit;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
+import com.amaap.pokerhandranking.domain.model.valueobject.Rank;
+import com.amaap.pokerhandranking.domain.model.valueobject.Suit;
 import com.amaap.pokerhandranking.domain.service.exception.InvalidCardTypeException;
 import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
 

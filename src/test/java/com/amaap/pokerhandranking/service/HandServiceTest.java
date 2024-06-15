@@ -14,10 +14,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HandServiceTest {
-    CardParser cardParser;
-    HandService handService;
-    InMemoryHandRepository inMemoryHandRepository;
-    CardBuilder cardBuilder;
+    private CardParser cardParser;
+    private HandService handService;
+    private InMemoryHandRepository inMemoryHandRepository;
+    private CardBuilder cardBuilder;
 
     @BeforeEach
     void setup() {

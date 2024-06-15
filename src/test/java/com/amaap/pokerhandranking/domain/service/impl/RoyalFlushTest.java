@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RoyalFlushTest {
-    CardObjectBuilder cardObjectBuilder = new CardObjectBuilder();
+    CardRankBuilder cardRankBuilder = new CardRankBuilder();
 
     @Test
     void shouldBeAbleToDetectRoyalFlush() {
         // arrange
         RoyalFlush royalFlush = new RoyalFlush();
-        List<Card> royalFlushHand = cardObjectBuilder.getValidRoyalFlushCards();
+        List<Card> royalFlushHand = cardRankBuilder.getValidRoyalFlushCards();
 
         // act
         boolean isRoyalFlush = royalFlush.evaluate(royalFlushHand);
@@ -29,7 +29,7 @@ class RoyalFlushTest {
     void shouldNotBeAbleToDetectRoyalFlush() {
         // arrange
         RoyalFlush royalFlush = new RoyalFlush();
-        List<Card> royalFlushHand = cardObjectBuilder.getInValidRoyalFlushCards();
+        List<Card> royalFlushHand = cardRankBuilder.getInValidRoyalFlushCards();
 
         // act
         boolean isRoyalFlush = royalFlush.evaluate(royalFlushHand);

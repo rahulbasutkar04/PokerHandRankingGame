@@ -1,4 +1,4 @@
-package com.amaap.pokerhandranking.domain.model;
+package com.amaap.pokerhandranking.domain.model.valueobject;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import com.amaap.pokerhandranking.domain.service.HandRanking;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FourOfKindTest {
 
-    CardObjectBuilder cardObjectBuilder = new CardObjectBuilder();
+    CardRankBuilder cardRankBuilder = new CardRankBuilder();
 
     @Test
     void shouldBeAbleToReturnTrueIfCardIsFourOfKind() {
         // arrange
-        List<Card> hand = cardObjectBuilder.getValidThreeOfKindCard();
+        List<Card> hand = cardRankBuilder.getValidThreeOfKindCard();
         HandRanking fourOfKind = new FourOfKind();
 
         // act & assert
@@ -27,7 +27,7 @@ class FourOfKindTest {
     @Test
     void shouldBeAbleToReturnFalseIfCardIsFourOfKind() {
         // arrange
-        List<Card> hand = cardObjectBuilder.getInValidThreeOfKindCard();
+        List<Card> hand = cardRankBuilder.getInValidThreeOfKindCard();
         HandRanking fourOfKind = new FourOfKind();
 
         // act & assert

@@ -1,13 +1,14 @@
 import com.amaap.pokerhandranking.AppConfig;
 import com.amaap.pokerhandranking.controller.HandController;
 import com.amaap.pokerhandranking.controller.RankController;
+import com.amaap.pokerhandranking.domain.service.exception.InvalidCardNameException;
 import com.amaap.pokerhandranking.service.exception.CardsNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws CardsNotFoundException {
+    public static void main(String[] args) throws CardsNotFoundException, InvalidCardNameException {
         AppConfig appConfig = new AppConfig();
         HandController handController = appConfig.handController();
         RankController rankController = appConfig.rankController();
@@ -19,7 +20,7 @@ public class Main {
         userHand.add("CA");
         userHand.add("S8");
 
-        handController.receiveCards(userHand);
+        handController.getCards(userHand);
         rankController.getHandRank();
     }
 }

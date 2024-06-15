@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service;
 
 import com.amaap.pokerhandranking.builder.CardBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import com.amaap.pokerhandranking.domain.service.exception.InvalidCardTypeException;
 import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
 import org.junit.jupiter.api.Test;

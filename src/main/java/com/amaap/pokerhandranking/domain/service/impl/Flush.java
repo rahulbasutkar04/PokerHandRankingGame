@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.domain.model.Card;
-import com.amaap.pokerhandranking.domain.model.Suit;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
+import com.amaap.pokerhandranking.domain.model.valueobject.Suit;
 import com.amaap.pokerhandranking.domain.service.HandRanking;
 
 import java.util.HashMap;

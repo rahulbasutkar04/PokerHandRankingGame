@@ -1,14 +1,14 @@
 package com.amaap.pokerhandranking.builder;
 
-import com.amaap.pokerhandranking.domain.model.Card;
-import com.amaap.pokerhandranking.domain.model.Rank;
-import com.amaap.pokerhandranking.domain.model.Suit;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
+import com.amaap.pokerhandranking.domain.model.valueobject.Rank;
+import com.amaap.pokerhandranking.domain.model.valueobject.Suit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CardObjectBuilder {
+public class CardRankBuilder {
     List<Card> hand = new ArrayList<>();
 
     public  List<Card> getValidFlushCards()

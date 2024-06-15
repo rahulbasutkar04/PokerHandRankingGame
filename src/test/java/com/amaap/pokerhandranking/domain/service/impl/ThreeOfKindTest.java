@@ -1,7 +1,7 @@
 package com.amaap.pokerhandranking.domain.service.impl;
 
-import com.amaap.pokerhandranking.builder.CardObjectBuilder;
-import com.amaap.pokerhandranking.domain.model.Card;
+import com.amaap.pokerhandranking.builder.CardRankBuilder;
+import com.amaap.pokerhandranking.domain.model.entity.Card;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ThreeOfKindTest {
 
     private final ThreeOfKind threeOfKindEvaluator = new ThreeOfKind();
-    private final CardObjectBuilder cardObjectBuilder = new CardObjectBuilder();
+    private final CardRankBuilder cardRankBuilder = new CardRankBuilder();
 
     @Test
     void shouldBeAbleToDetectValidThreeOfKind() {
         // arrange
-        List<Card> threeOfKindHand = cardObjectBuilder.getValidThreeOfKindCards();
+        List<Card> threeOfKindHand = cardRankBuilder.getValidThreeOfKindCards();
 
         // act
         boolean isThreeOfKind = threeOfKindEvaluator.evaluate(threeOfKindHand);
@@ -29,7 +29,7 @@ class ThreeOfKindTest {
     @Test
     void shouldNotDetectInvalidThreeOfKind() {
         // arrange
-        List<Card> nonThreeOfKindHand = cardObjectBuilder.getInValidThreeOfKindCards();
+        List<Card> nonThreeOfKindHand = cardRankBuilder.getInValidThreeOfKindCards();
 
         // act
         boolean isThreeOfKind = threeOfKindEvaluator.evaluate(nonThreeOfKindHand);
