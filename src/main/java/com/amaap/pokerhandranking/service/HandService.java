@@ -2,6 +2,7 @@ package com.amaap.pokerhandranking.service;
 
 import com.amaap.pokerhandranking.domain.service.CardParser;
 import com.amaap.pokerhandranking.repository.impl.InMemoryHandRepository;
+import com.amaap.pokerhandranking.repository.impl.db.impl.InMemoryFakeDatabase;
 import com.amaap.pokerhandranking.service.exception.DuplicateCardException;
 import com.amaap.pokerhandranking.service.exception.InvalidCardCountException;
 
@@ -16,7 +17,7 @@ public class HandService {
 
     public HandService(CardParser cardParser, InMemoryHandRepository inMemoryHandRepository) {
         this.cardParser = cardParser;
-        this.inMemoryHandRepository = InMemoryHandRepository.getInstance();
+        this.inMemoryHandRepository = inMemoryHandRepository;
     }
 
     public boolean receiveCards(List<String> cards) throws Exception, DuplicateCardException {

@@ -12,10 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CardParserTest {
 
-
     CardBuilder cardBuilder = new CardBuilder();
     CardParser cardParser = new CardParser();
-
 
     @Test
     void shouldBeAbleToReturnTheCardNameIfCardIsValidCard() throws InvalidCardCountException, InvalidCardTypeException {
@@ -53,9 +51,52 @@ class CardParserTest {
     }
 
     @Test
+    void shouldThrowExceptionIfCardIsNull() {
+        // arrange
+        String card = null;
+
+        // act & assert
+        assertThrows(InvalidCardCountException.class, () -> {
+            cardParser.parseCard(card);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionIfCardLengthIsLessThanTwo() {
+        // arrange
+        String card = "A"; // only one character
+
+        // act & assert
+        assertThrows(InvalidCardCountException.class, () -> {
+            cardParser.parseCard(card);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionIfSuitIsNull() {
+        // arrange
+        String card = "ZT"; // invalid suit
+
+        // act & assert
+        assertThrows(InvalidCardTypeException.class, () -> {
+            cardParser.parseCard(card);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionIfRankIsNull() {
+        // arrange
+        String card = "SZ"; // invalid rank
+
+        // act & assert
+        assertThrows(InvalidCardTypeException.class, () -> {
+            cardParser.parseCard(card);
+        });
+    }
+
+    @Test
     void shouldBeAbleToValidateTheListOfCard() throws Exception {
         // arrange
-        CardParser cardParser = new CardParser();
         List<String> receivedCards = cardBuilder.getValidCards();
 
         // act
@@ -63,13 +104,11 @@ class CardParserTest {
 
         // assert
         assertTrue(isValidCards);
-
     }
 
     @Test
     void shouldThrowExceptionIfListOfCardContainsInValidCard() {
         // arrange
-        CardParser cardParser = new CardParser();
         List<String> receivedCards = cardBuilder.getInValidCards();
 
         // act & assert
@@ -77,4 +116,17 @@ class CardParserTest {
             cardParser.validateCards(receivedCards);
         });
     }
+
+    @Test
+    void shouldThrowExceptionIfListContainsCardWithInvalidCount() {
+        // arrange
+        List<String> receivedCards = List.of("T", "S2", "H3");
+
+        // act & assert
+        assertThrows(InvalidCardCountException.class, () -> {
+            cardParser.validateCards(receivedCards);
+        });
+    }
+
+
 }
